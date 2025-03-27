@@ -68,7 +68,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     if (state.source >= ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET) {
         return;
     }
-    LOG_DBG("source: %d, level: %d, usb: %d", state.source, state.level, state.usb_present);
+    LOG_DBG("aaaaaaaaaaaaaaaaaaa source: %d, level: %d, usb: %d", state.source, state.level, state.usb_present);
     lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
     lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
 
@@ -76,9 +76,9 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     if (state.source == 0) {
         lv_label_set_text_fmt(label, "C:%3u%%", state.level);
     } else {
-        lv_label_set_text_fmt(label, "%d:%3u%%", state.source, state.level);
+        lv_label_set_text_fmt(label, "P:%3u%%", state.source, state.level);
     }
-    
+
     if (state.level > 0 || state.usb_present) {
         lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
         lv_obj_clear_flag(label, LV_OBJ_FLAG_HIDDEN);
