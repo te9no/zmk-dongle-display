@@ -74,7 +74,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
 
     draw_battery(symbol, state.level, state.usb_present);
     if (state.source == 0) {
-        lv_label_set_text_fmt(label, "C:%3u%%%%", state.level);
+        lv_label_set_text_fmt(label, "CC:%3u%%", state.level);
     } else {
         lv_label_set_text_fmt(label, "P:%3u%%", state.source, state.level);
     }
