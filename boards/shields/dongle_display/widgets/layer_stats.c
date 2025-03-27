@@ -39,7 +39,7 @@
  }
  
  static void layer_status_update_cb(struct layer_status_state state) {
-     struct zmk_widget_layer_stats *widget;
+     struct zmk_widget_layer_status *widget;
      SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_symbol(widget->obj, state); }
  }
  
@@ -56,15 +56,15 @@
  
  ZMK_SUBSCRIPTION(widget_layer_stats, zmk_layer_state_changed);
  
- int zmk_widget_layer_stats_init(struct zmk_widget_layer_stats *widget, lv_obj_t *parent) {
+ int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
      widget->obj = lv_label_create(parent);
  
      sys_slist_append(&widgets, &widget->node);
  
-     widget_layer_stats_init();
+     widget_layer_status_init();
      return 0;
  }
  
- lv_obj_t *zmk_widget_layer_stats_obj(struct zmk_widget_layer_stats *widget) {
+ lv_obj_t *zmk_widget_layer_status_obj(struct zmk_widget_layer_status *widget) {
      return widget->obj;
  }
