@@ -38,7 +38,7 @@
      }
  }
  
- static void layer_stats_update_cb(struct layer_stats_state state) {
+ static void layer_status_update_cb(struct layer_stats_state state) {
      struct zmk_widget_layer_stats *widget;
      SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_symbol(widget->obj, state); }
  }
@@ -51,7 +51,7 @@
      };
  }
  
- ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_stats, struct layer_stats_state, layer_stats_update_cb,
+ ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_stats, struct layer_stats_state, layer_status_update_cb,
                              layer_stats_get_state)
  
  ZMK_SUBSCRIPTION(widget_layer_stats, zmk_layer_state_changed);
