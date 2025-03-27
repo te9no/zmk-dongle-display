@@ -15,4 +15,4 @@ struct zmk_widget_layer_status {
 };
 
 int zmk_widget_layer_stats_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent);
-lv_obj_t *zmk_widget_layer_status_obj(struct zmk_widget_layer_status *widget);
+lv_obj_t *zmk_widget_layer_stats_obj(struct zmk_widget_layer_status *widget);
