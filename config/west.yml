@@ -2,15 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: redmasters
-      url-base: https://github.com/redmasters
+    - name: te9no
+      url-base: https://github.com/te9no
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
     - name: zmk-config-dongle
-      remote: redmasters
-      revision: feature/main-config
+      remote: te9no
+      revision: main
   self:
     path: config
