@@ -65,6 +65,6 @@ int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_
     return 0;
 }
 
-lv_obj_t *zmk_widget_layer_stats_obj(struct zmk_widget_layer_stat *widget) {
+lv_obj_t *zmk_widget_layer_stats_obj(struct zmk_widget_layer_status *widget) {
     return widget->obj;
 }
