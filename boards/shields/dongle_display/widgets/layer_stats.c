@@ -29,12 +29,14 @@
          sprintf(text, "%i", state.index);
  
          lv_label_set_text(label, text);
+         LOG_DBG("***************** layer index:" %i, state.index);
      } else {
          char text[13] = {};
  
          snprintf(text, sizeof(text), "%s", state.label);
  
          lv_label_set_text(label, text);
+         LOG_DBG("***************** layer index:" %s, state.label);
      }
  }
  
