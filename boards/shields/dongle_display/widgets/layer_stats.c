@@ -41,7 +41,7 @@
  }
  
  static void layer_status_update_cb(struct layer_status_state state) {
-     struct zmk_widget_layer_stats *widget;
+     struct zmk_widget_layer_status *widget;
      SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_symbol(widget->obj, state); }
  }
  
