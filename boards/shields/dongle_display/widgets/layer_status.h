@@ -14,5 +14,5 @@ struct zmk_widget_layer_stats {
     lv_obj_t *obj;
 };
 
-int zmk_widget_layer_status_init(struct zmk_widget_layer_stats *widget, lv_obj_t *parent);
+int zmk_widget_layer_stats_init(struct zmk_widget_layer_stats *widget, lv_obj_t *parent);
 lv_obj_t *zmk_widget_layer_stats_obj(struct zmk_widget_layer_stats *widget);
