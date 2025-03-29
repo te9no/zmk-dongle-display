@@ -52,7 +52,7 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align_to(zmk_widget_hid_indicators_obj(&hid_indicators_widget), zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_OUT_TOP_LEFT, 0, -2);
 #endif
 
-    zmk_widget_layer_stats_init(&layer_status_widget, screen);
+    zmk_widget_layer_status_init(&layer_status_widget, screen);
     // lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 2, -18);
     lv_obj_align_to(zmk_widget_layer_stats_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
 
