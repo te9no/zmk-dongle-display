@@ -40,28 +40,30 @@ lv_obj_t *zmk_display_status_screen() {
 
     // Create a container for widgets
     lv_obj_t *container = lv_obj_create(screen);
-    lv_obj_set_size(container, 128, 32);
+    lv_obj_set_size(container, 32, 128);  // サイズを回転後の寸法に合わせる
     lv_obj_set_style_pad_all(container, 0, LV_PART_MAIN);
     lv_obj_set_style_bg_opa(container, LV_OPA_TRANSP, LV_PART_MAIN);
-    lv_obj_set_style_transform_angle(container, 900, 0);
-    lv_obj_center(container);
-    
+    lv_obj_set_pos(container, 0, 0);  // 位置を左上に固定
+
     zmk_widget_output_status_init(&output_status_widget, container);
-    lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_obj_set_pos(zmk_widget_output_status_obj(&output_status_widget), 0, 0);
     
     zmk_widget_bongo_cat_init(&bongo_cat_widget, container);
-    lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_pos(zmk_widget_bongo_cat_obj(&bongo_cat_widget), 0, 48);
 
 #if IS_ENABLED(CONFIG_ZMK_HID_INDICATORS)
     zmk_widget_hid_indicators_init(&hid_indicators_widget, container);
-    lv_obj_align(zmk_widget_hid_indicators_obj(&hid_indicators_widget), LV_ALIGN_BOTTOM_RIGHT, -2, -2);
+    lv_obj_set_pos(zmk_widget_hid_indicators_obj(&hid_indicators_widget), 0, 96);
 #endif
 
     zmk_widget_layer_stats_init(&layer_status_widget, container);
-    lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 2, -2);
+    lv_obj_set_pos(zmk_widget_layer_stats_obj(&layer_status_widget), 0, 106);
 
     zmk_widget_dongle_battery_status_init(&dongle_battery_status_widget, container);
-    lv_obj_align(zmk_widget_dongle_battery_status_obj(&dongle_battery_status_widget), LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_obj_set_pos(zmk_widget_dongle_battery_status_obj(&dongle_battery_status_widget), 0, 116);
+
+    // スクリーン全体を回転
+    lv_obj_set_style_transform_angle(screen, 900, 0);
 
     return screen;
 }
