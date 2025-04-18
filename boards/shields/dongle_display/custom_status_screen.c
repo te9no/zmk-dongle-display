@@ -32,6 +32,9 @@ lv_obj_t *zmk_display_status_screen() {
 
     screen = lv_obj_create(NULL);
 
+    // Remove rotation setting
+    // lv_disp_set_rotation(lv_disp_get_default(), LV_DISP_ROT_180);
+
     lv_style_init(&global_style);
     lv_style_set_text_font(&global_style, &lv_font_unscii_8);
     lv_style_set_text_letter_space(&global_style, 1);
@@ -42,10 +45,10 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 0, 0);
     
     zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);
-    lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_RIGHT, -2, -2);
+    lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_RIGHT, 0, -2);
 
     // zmk_widget_modifiers_init(&modifiers_widget, screen);
-    // lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, -2);
+    // lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
 #if IS_ENABLED(CONFIG_ZMK_HID_INDICATORS)
     zmk_widget_hid_indicators_init(&hid_indicators_widget, screen);
@@ -53,10 +56,13 @@ lv_obj_t *zmk_display_status_screen() {
 #endif
 
     zmk_widget_layer_stats_init(&layer_status_widget, screen);
-    lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 2, -2);
+    // lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 2, -18);
+    // lv_obj_align_to(zmk_widget_layer_stats_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
+    // lv_obj_align_to(zmk_widget_layer_stats_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
+    lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
     zmk_widget_dongle_battery_status_init(&dongle_battery_status_widget, screen);
-    lv_obj_align(zmk_widget_dongle_battery_status_obj(&dongle_battery_status_widget), LV_ALIGN_TOP_RIGHT, -2, 0);
+    lv_obj_align(zmk_widget_dongle_battery_status_obj(&dongle_battery_status_widget), LV_ALIGN_TOP_RIGHT, 0, 0);
 
     return screen;
 }
