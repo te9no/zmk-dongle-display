@@ -42,7 +42,7 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 0, 0);
     
     zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);
-    lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_RIGHT, 0, -2);
+    lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_CENTER, 0, -7);
 
     // zmk_widget_modifiers_init(&modifiers_widget, screen);
     // lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
@@ -53,11 +53,9 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align(zmk_widget_hid_indicators_obj(&hid_indicators_widget), LV_ALIGN_BOTTOM_LEFT, 0, -2);
 #endif
 
-    zmk_widget_layer_stats_init(&layer_status_widget, screen);
-    // lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 2, -18);
-    // lv_obj_align_to(zmk_widget_layer_stats_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
-    // lv_obj_align_to(zmk_widget_layer_stats_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
-    lv_obj_align(zmk_widget_layer_stats_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
+    zmk_widget_layer_status_init(&layer_status_widget, screen);
+    lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_BOTTOM_LEFT, 20, -18);
+    // lv_obj_align_to(zmk_widget_layer_status_obj(&layer_status_widget), zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
 
     zmk_widget_dongle_battery_status_init(&dongle_battery_status_widget, screen);
     lv_obj_align(zmk_widget_dongle_battery_status_obj(&dongle_battery_status_widget), LV_ALIGN_TOP_RIGHT, 0, 0);
