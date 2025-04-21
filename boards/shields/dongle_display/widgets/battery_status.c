@@ -78,12 +78,8 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     lv_obj_t *label = battery_objects[state.source].label;
 
     draw_battery(symbol, state.level, state.usb_present);
-    if (state.source == 0) {
-        lv_label_set_text_fmt(label, "C :%3u%%", state.level);  // コロンの前にスペースを追加
-    } else {
-        lv_label_set_text_fmt(label, "P :%3u%%", state.level);  // コロンの前にスペースを追加
-    }
-
+    lv_label_set_text_fmt(label, "%4u%%", state.level);
+    
     if (state.level > 0 || state.usb_present) {
         lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
         lv_obj_move_foreground(symbol);
