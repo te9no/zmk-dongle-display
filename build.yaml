@@ -1,6 +1,5 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: rommana_central_dongle dongle_display
-  - board: seeeduino_xiao_ble
-    shield: sweep_central_dongle dongle_display
+    shield: Solstice_L rgbled_adapter dongle_display
+    snippet: zmk-usb-logging studio-rpc-usb-uart
