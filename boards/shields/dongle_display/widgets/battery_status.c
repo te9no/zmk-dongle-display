@@ -41,31 +41,40 @@ struct battery_object {
     
 static lv_color_t battery_image_buffer[ZMK_SPLIT_CENTRAL_PERIPHERAL_COUNT + SOURCE_OFFSET][5 * 8];
 
+static void draw_rect(lv_obj_t *canvas, uint8_t x, uint8_t y, uint8_t w, uint8_t h, bool outline_only) {
+    for (uint8_t row = 0; row < h; row++) {
+        for (uint8_t col = 0; col < w; col++) {
+            bool is_inner_cell = row > 0 && row < (h - 1) && col > 0 && col < (w - 1);
+            if (outline_only && is_inner_cell) {
+                continue;
+            }
+
+            lv_canvas_set_px(canvas, x + col, y + row, lv_color_white(), LV_OPA_COVER);
+        }
+    }
+}
+
 static void draw_battery(lv_obj_t *canvas, uint8_t level, bool usb_present) {
     lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
-    
-    lv_draw_rect_dsc_t rect_fill_dsc;
-    lv_draw_rect_dsc_init(&rect_fill_dsc);
 
-    if (usb_present) {
-        rect_fill_dsc.bg_opa = LV_OPA_TRANSP;
-        rect_fill_dsc.border_color = lv_color_white();
-        rect_fill_dsc.border_width = 1;
+    lv_canvas_set_px(canvas, 0, 0, lv_color_white(), LV_OPA_COVER);
+    lv_canvas_set_px(canvas, 4, 0, lv_color_white(), LV_OPA_COVER);
+
+    uint8_t height = 0;
+    if (level <= 10 || usb_present) {
+        height = 5;
+    } else if (level <= 30) {
+        height = 4;
+    } else if (level <= 50) {
+        height = 3;
+    } else if (level <= 70) {
+        height = 2;
+    } else if (level <= 90) {
+        height = 1;
     }
 
-    lv_canvas_set_px(canvas, 0, 0, lv_color_white());
-    lv_canvas_set_px(canvas, 4, 0, lv_color_white());
-
-    if (level <= 10 || usb_present) {
-        lv_canvas_draw_rect(canvas, 1, 2, 3, 5, &rect_fill_dsc);
-    } else if (level <= 30) {
-        lv_canvas_draw_rect(canvas, 1, 2, 3, 4, &rect_fill_dsc);
-    } else if (level <= 50) {
-        lv_canvas_draw_rect(canvas, 1, 2, 3, 3, &rect_fill_dsc);
-    } else if (level <= 70) {
-        lv_canvas_draw_rect(canvas, 1, 2, 3, 2, &rect_fill_dsc);
-    } else if (level <= 90) {
-        lv_canvas_draw_rect(canvas, 1, 2, 3, 1, &rect_fill_dsc);
+    if (height > 0) {
+        draw_rect(canvas, 1, 2, 3, height, usb_present);
     }
 }
 

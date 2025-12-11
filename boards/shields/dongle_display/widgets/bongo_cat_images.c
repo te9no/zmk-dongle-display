@@ -48,11 +48,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_none = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_none_map,
 };
@@ -94,11 +95,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_left1 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_left1_map,
 };
@@ -140,11 +142,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_left2 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_left2_map,
 };
@@ -186,11 +189,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_right1 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_right1_map,
 };
@@ -232,11 +236,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_right2 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_right2_map,
 };
@@ -278,11 +283,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_both1 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_both1_map,
 };
@@ -324,11 +330,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_both1_open = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_both1_open_map,
 };
@@ -370,11 +377,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BONGO_CAT
 };
 
 const lv_img_dsc_t bongo_cat_both2 = {
+  .header.magic = LV_IMAGE_HEADER_MAGIC,
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
-  .header.always_zero = 0,
-  .header.reserved = 0,
+  .header.flags = 0,
   .header.w = 50,
   .header.h = 26,
+  .header.stride = 7,
   .data_size = 190,
   .data = bongo_cat_both2_map,
 };
