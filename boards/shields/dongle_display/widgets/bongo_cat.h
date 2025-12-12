@@ -6,7 +6,7 @@
  
  #pragma once
 
-#include <lvgl.h>
+#include <zmk/lvgl_compat.h>
 #include <zephyr/kernel.h>
 
 struct zmk_widget_bongo_cat {

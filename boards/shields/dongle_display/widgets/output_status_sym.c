@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
  
- #include <lvgl.h>
+ #include <zmk/lvgl_compat.h>
 
 
 #ifndef LV_ATTRIBUTE_MEM_ALIGN
