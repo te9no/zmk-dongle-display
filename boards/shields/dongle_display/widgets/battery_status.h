@@ -6,7 +6,7 @@
  
 #pragma once
 
-#include <zmk/lvgl_compat.h>
+#include "lvgl_compat.h"
 #include <zephyr/kernel.h>
 
 struct zmk_widget_dongle_battery_status {

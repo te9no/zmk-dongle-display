@@ -6,7 +6,7 @@
  
  #pragma once
 
-#include <zmk/lvgl_compat.h>
+#include "lvgl_compat.h"
 #include <zephyr/kernel.h>
 
 #define SIZE_SYMBOLS 14 // 14 x 14 pixel

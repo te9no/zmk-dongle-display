@@ -7,6 +7,6 @@
 
 #pragma once
 
-#include <zmk/lvgl_compat.h>
+#include "widgets/lvgl_compat.h"
 
 lv_obj_t *zmk_display_status_screen();
