@@ -66,17 +66,32 @@ static const char *source_label(uint8_t source) {
 
 static void place_battery_label(lv_obj_t *label, uint8_t source) {
 #if IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY)
-    lv_obj_set_style_transform_rotation(label, CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_ROTATION,
-                                        LV_PART_MAIN);
-
     int32_t x = CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_LEFT_X;
     if (source > 0) {
         x = CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_RIGHT_X;
     }
 
-    lv_obj_set_pos(label, x, 24);
+    lv_obj_set_width(label, 24);
+    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
+    lv_obj_set_pos(label, x, 0);
 #else
     lv_obj_align(label, LV_ALIGN_TOP_LEFT, 0, source * 12);
+#endif
+}
+
+static void set_battery_text(lv_obj_t *label, struct battery_state state) {
+#if IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY)
+    if (state.usb_present) {
+        lv_label_set_text_fmt(label, "%s\nUSB", source_label(state.source));
+    } else {
+        lv_label_set_text_fmt(label, "%s\n%u\n%%", source_label(state.source), state.level);
+    }
+#else
+    if (state.usb_present) {
+        lv_label_set_text_fmt(label, "%s USB", source_label(state.source));
+    } else {
+        lv_label_set_text_fmt(label, "%s %3u%%", source_label(state.source), state.level);
+    }
 #endif
 }
 
@@ -86,12 +101,7 @@ static void set_battery_label(struct battery_state state) {
     }
 
     lv_obj_t *label = battery_objects[state.source].label;
-
-    if (state.usb_present) {
-        lv_label_set_text_fmt(label, "%s USB", source_label(state.source));
-    } else {
-        lv_label_set_text_fmt(label, "%s %3u%%", source_label(state.source), state.level);
-    }
+    set_battery_text(label, state);
 
     lv_obj_clear_flag(label, LV_OBJ_FLAG_HIDDEN);
     lv_obj_move_foreground(label);
@@ -158,10 +168,15 @@ static void battery_only_widget_init(struct battery_only_widget *widget, lv_obj_
 
     for (uint8_t i = 0; i < BATTERY_SOURCE_COUNT; i++) {
         lv_obj_t *label = lv_label_create(widget->obj);
+#if IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY)
+        lv_label_set_text_fmt(label, "%s\n--\n%%", source_label(i));
+#else
         lv_label_set_text_fmt(label, "%s --%%", source_label(i));
+#endif
         lv_obj_set_style_text_font(label, &lv_font_unscii_8, LV_PART_MAIN);
         lv_obj_set_style_text_color(label, lv_color_black(), LV_PART_MAIN);
-        lv_obj_set_style_text_letter_space(label, 1, LV_PART_MAIN);
+        lv_obj_set_style_text_letter_space(label, 0, LV_PART_MAIN);
+        lv_obj_set_style_text_line_space(label, 0, LV_PART_MAIN);
         place_battery_label(label, i);
         battery_objects[i].label = label;
     }
