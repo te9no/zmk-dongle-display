@@ -9,14 +9,39 @@ endchoice
 
 config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     select LV_USE_LABEL
-    select LV_USE_IMAGE
-    select LV_USE_CANVAS
-    select LV_USE_ANIMIMG 
-    select LV_USE_ANIMATION
-    select LV_USE_LINE 
+    select LV_USE_IMAGE if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    select LV_USE_CANVAS if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    select LV_USE_ANIMIMG if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    select LV_USE_ANIMATION if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    select LV_USE_LINE if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
     select LV_FONT_UNSCII_8
-    select ZMK_WPM
-    imply ZMK_HID_INDICATORS
+    select ZMK_WPM if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    imply ZMK_HID_INDICATORS if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+
+config ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+    bool "Use a minimal battery-only status screen"
+    help
+        Replace the default dongle-display screen with a lightweight
+        label-only battery view.
+
+config ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY
+    bool "Rotate battery labels for vertical OLED placement"
+    depends on ZMK_DONGLE_DISPLAY_BATTERY_ONLY
+
+config ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_ROTATION
+    int "Battery label rotation in 0.1 degree units"
+    depends on ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY
+    default 2700
+
+config ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_LEFT_X
+    int "X position for the central-side battery label"
+    depends on ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY
+    default 22
+
+config ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY_RIGHT_X
+    int "X position for the peripheral-side battery label"
+    depends on ZMK_DONGLE_DISPLAY_VERTICAL_BATTERY
+    default 82
 
 config ZMK_DONGLE_DISPLAY_DONGLE_BATTERY
     bool "Show also the battery level of the dongle"
@@ -27,15 +52,15 @@ config ZMK_DONGLE_DISPLAY_MAC_MODIFIERS
 
 config ZMK_DONGLE_DISPLAY_BONGO_CAT
     bool "Display the Bongo Cat widget"
-    default y
+    default y if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
 
 config ZMK_DONGLE_DISPLAY_MODIFIERS
     bool "Display the modifiers widget"
-    default y
+    default y if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
 
 config ZMK_DONGLE_DISPLAY_LAYER
     bool "Display the highest layer widget"
-    default y
+    default y if !ZMK_DONGLE_DISPLAY_BATTERY_ONLY
 
 config ZMK_DONGLE_DISPLAY_LAYER_NAME_SCROLL_WIDTH
     int "Width for layer name label (in pixels)"
@@ -63,6 +88,7 @@ choice ZMK_DISPLAY_WORK_QUEUE
 endchoice
 
 config LV_Z_MEM_POOL_SIZE
+    default 4096 if ZMK_DONGLE_DISPLAY_BATTERY_ONLY
     default 8192
 
 config LV_Z_VDB_SIZE
