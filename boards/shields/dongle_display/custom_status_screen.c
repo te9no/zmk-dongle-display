@@ -46,6 +46,9 @@ lv_obj_t *zmk_display_status_screen() {
     lv_style_set_bg_opa(&global_style, LV_OPA_COVER);
     lv_style_set_border_width(&global_style, 0);
     lv_obj_add_style(screen, &global_style, LV_PART_MAIN);
+    lv_obj_set_style_bg_color(screen, lv_color_black(), LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(screen, LV_OPA_COVER, LV_PART_MAIN);
+    lv_obj_set_style_text_color(screen, lv_color_white(), LV_PART_MAIN);
     
     zmk_widget_output_status_init(&output_status_widget, screen);
     make_widget_transparent(zmk_widget_output_status_obj(&output_status_widget));
